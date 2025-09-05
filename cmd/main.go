@@ -7,20 +7,28 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
+	"subagg/internal/config"
+	"subagg/internal/handlers"
 	"subagg/internal/models"
 	"subagg/internal/routes"
 )
 
 func main() {
+	config.Init()
 	gorm, err := ConnectToDatabase()
 	if err != nil {
 		log.Fatal(err)
 	}
 	db := models.NewDatabase(gorm)
+	err = db.Migrate()
+	if err != nil {
+		log.Fatal(err)
+	}
+	h := handlers.NewHandlers(db)
 
 	router := gin.Default()
 
-	routes.RegisterRoutes(router)
+	routes.RegisterRoutes(router, h)
 
 	router.Run(":8080")
 }
