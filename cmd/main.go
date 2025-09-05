@@ -16,7 +16,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	_ = models.NewDatabase(gorm)
+	db := models.NewDatabase(gorm)
 
 	router := gin.Default()
 
