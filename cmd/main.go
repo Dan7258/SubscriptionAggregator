@@ -13,6 +13,13 @@ import (
 	"subagg/internal/routes"
 )
 
+// @title Subscription aggregator API
+// @version 1.0
+// @description REST is a service for aggregating data about users online subscriptions.
+
+// @host localhost:8000
+// @BasePath /
+
 func main() {
 	config.Init()
 	gorm, err := ConnectToDatabase()

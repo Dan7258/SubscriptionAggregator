@@ -1,0 +1,9 @@
+basePath: /
+host: localhost:8000
+info:
+  contact: {}
+  description: REST is a service for aggregating data about users online subscriptions.
+  title: Subscription aggregator API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
