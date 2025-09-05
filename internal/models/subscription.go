@@ -29,6 +29,11 @@ func (db PostgresDatabase) UpdateSubscriptionByID(subscription Subscription) err
 	return err
 }
 
+func (db PostgresDatabase) DeleteSubscriptionByID(id uint) error {
+	err := db.Conn.Delete(&Subscription{}, id).Error
+	return err
+}
+
 func (db PostgresDatabase) GetSubscriptions() ([]Subscription, error) {
 	var subscriptions []Subscription
 	err := db.Conn.Find(&subscriptions).Error
