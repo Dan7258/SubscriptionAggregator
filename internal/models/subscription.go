@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/google/uuid"
-	"time"
 )
 
 type Subscription struct {
@@ -10,7 +9,7 @@ type Subscription struct {
 	ServiceName string    `json:"service_name"`
 	Price       uint      `json:"price"`
 	UserID      uuid.UUID `json:"user_id"`
-	StartDate   time.Time `json:"start_date"`
+	StartDate   MonthYear `json:"start_date"`
 }
 
 func (db PostgresDatabase) CreateSubscription(subscription Subscription) error {
