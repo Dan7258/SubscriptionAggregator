@@ -6,7 +6,7 @@ import (
 )
 
 type Subscription struct {
-	Id          uint      `json:"id" gorm:"primary_key"`
+	Id          uint64    `json:"id" gorm:"primary_key"`
 	ServiceName string    `json:"service_name"`
 	Price       uint      `json:"price"`
 	UserID      uuid.UUID `json:"user_id"`
@@ -18,18 +18,18 @@ func (db PostgresDatabase) CreateSubscription(subscription Subscription) error {
 	return err
 }
 
-func (db PostgresDatabase) GetSubscriptionByID(id uint) (Subscription, error) {
+func (db PostgresDatabase) GetSubscriptionByID(id uint64) (Subscription, error) {
 	var subscription Subscription
 	err := db.Conn.First(&subscription, id).Error
 	return subscription, err
 }
 
-func (db PostgresDatabase) UpdateSubscriptionByID(subscription Subscription) error {
-	err := db.Conn.Save(&subscription).Error
+func (db PostgresDatabase) UpdateSubscriptionByID(id uint64, subscription Subscription) error {
+	err := db.Conn.Model(&subscription).Where("id = ?", id).Updates(subscription).Error
 	return err
 }
 
-func (db PostgresDatabase) DeleteSubscriptionByID(id uint) error {
+func (db PostgresDatabase) DeleteSubscriptionByID(id uint64) error {
 	err := db.Conn.Delete(&Subscription{}, id).Error
 	return err
 }
