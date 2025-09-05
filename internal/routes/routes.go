@@ -5,6 +5,6 @@ import (
 	"subagg/internal/handlers"
 )
 
-func RegisterRoutes(r *gin.Engine) {
-	r.GET("/", handlers.MainPageHandler)
+func RegisterRoutes(r *gin.Engine, h *handlers.Handlers) {
+	r.GET("/", h.GetSubscriptions)
 }

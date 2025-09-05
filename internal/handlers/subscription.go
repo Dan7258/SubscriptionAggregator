@@ -7,7 +7,11 @@ import (
 )
 
 func (h *Handlers) GetSubscriptions(c *gin.Context) {
-	c.JSON(200, h.db.GetSubscriptions)
+	subs, err := h.db.GetSubscriptions()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+	}
+	c.JSON(200, subs)
 }
 
 func (h *Handlers) CreateSubscription(c *gin.Context) {
