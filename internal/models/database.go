@@ -9,7 +9,5 @@ type PostgresDatabase struct {
 }
 
 func NewDatabase(gorm *gorm.DB) *PostgresDatabase {
-	return &PostgresDatabase{
-		Conn: gorm,
-	}
+	return &PostgresDatabase{gorm}
 }
