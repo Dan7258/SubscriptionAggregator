@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// @Description Custom type representing a month and year in MM-YYYY format (e.g., "03-2025").
 type MonthYear struct {
 	time.Time
 }

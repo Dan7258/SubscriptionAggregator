@@ -17,7 +17,7 @@ import (
 // @version 1.0
 // @description REST is a service for aggregating data about users online subscriptions.
 
-// @host localhost:8000
+// @host localhost:8080
 // @BasePath /
 
 func main() {
