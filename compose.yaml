@@ -1,4 +1,15 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: subAgg
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+      - internal/config/.env
   db:
     image: postgres:latest
     container_name: db
